@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+body {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    font-family: 'Poppins', sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+}
+#mainTemp {
+    font-family: 'Roboto Slab', serif;
+}
+/* MAIN DIV SECTION  */
+.mainDiv {
+    box-sizing: border-box;
+    width: 50%;
+    height: 220px;
+    margin: auto;
+}
+.mainDiv h3 {
+    font-size: 1.5rem;
+}
+.mainDiv b {
+    font-size: 4.5rem;
+    margin-left: 10px;
+}
+.imageDiv {
+    margin: 10px auto;
+}
+.imageDiv img {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+/* DAYS FORECAST SECTION  */
+.Heading {
+    box-sizing: border-box;
+    padding-left: 7%;
+    font-size: 1.5rem;
+    color: gold;
+}
+#container, #containerHour {
+    box-sizing: border-box;
+    margin: auto;
+    width: 80%;
+    height: 170px;
+    border: none;
+    overflow: hidden;
+    text-align: center;
+}
+#content, #contentHour {
+    box-sizing: border-box;
+    padding-left: 40px;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#content {
+    width: 120%;
+}
+#contentHour {
+    width: 405%;
+}
+.item {
+    display: inline-block;
+    margin: auto;
+    width: 25%;
+}
+.item img {
+    width: 50px;
+    height: 50px;
+    margin: 5px auto;
+}
+.item h5 {
+    font-size: 1rem;
+    font-weight: normal;
+}
+#slide1, #slide2, #slide3, #slide4 {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 30%;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 35%;
+}
+#slide1, #slide3 {
+    left: 6%;
+}
+#slide2, #slide4 {
+    right: 6%;
+}
+.myIcon {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+.myIcon:hover {
+    color: rgb(56, 168, 81);
+}
+hr {
+    box-sizing: border-box;
+    position: relative;
+    top: -10px;
+    border: none;
+    border-bottom: 2px dashed white;
+}
+/* FORM SECTION */
+.formDiv {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    box-sizing: border-box;
+    width: 300px;
+    height: auto;
+}
+.formDiv form {
+    width: 100%;
+}
+.formDiv form * {
+    width: 100%;
+    height: 40px;
+    border: 1px solid black;
+    background-color: rgba(245, 240, 240, 0.3);
+}
+.cityInput {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    text-align: center;
+}
+.searchButton {
+    font-weight: bold;
+    color: rgb(8, 8, 8);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.searchButton:hover {
+    background-color: rgba(252, 216, 13, 0.5);
+    color: white;
+}
+.searchButton:active {
+    position: relative;
+    top: 2px;
+}
+
+/* CHOSEN DATE IN DAY FORMAT SECTION */
+.dateDiv {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 300px;
+    height: auto;
+    color: #16FF00;
+}
+a {
+    text-decoration: none;
+    color: #B3FFAE;
+}
+a:hover {
+    color: #FF6464;
+    text-decoration: underline;
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+  <body style="background-image: url('{{ url_for('static', filename='img/weather.jpg') }}')">
+    <!-- CENTRAL TOP SECTION -->
+    <div class="mainDiv">
+        <h3>{{ data.city }}, {{ data.country }}</h3>
+        <div class="imageDiv d-flex justify-content-center align-items-center">
+            <img src="{{ data.icon }}" alt="weather-icon">
+            <b id="mainTemp">{{ data.temp_c }}°C</b>
+        </div>
+        <h3>{{ data.description }}</h3>
+    </div>
+
+
+    <!-- 7 DAYS FORCAST SECTION -->
+    <h3 class="text-start Heading">7 Days Forecast</h3>
+    <div class="position-relative">
+      <div id="container">
+        <div id="content">
+
+          {% for df in data.days %}
+            <div class="item">
+              <h5><a href="{{ url_for('chosen_page', chosen_date=df.day_date) }}">{{ df.day_date }}</a></h5>
+              <img src="{{ df.day_icon }}" alt="icon">
+              <h4>{{ df.day_temp }}°C</h4>
+              <h6>{{ df.day_text }}</h6>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <button class="myButton" id="slide1" type="button"><i class="bi bi-arrow-left-circle myIcon"></i></button>
+      <button class="myButton" id="slide2" type="button"><i class="bi bi-arrow-right-circle myIcon"></i></button>
+    </div>
+
+    <hr class="m-0 p-0">
+
+    <!-- 7 DAYS FORCAST SECTION -->
+    <h3 class="text-start Heading">24 Hours Forecast</h3>
+    <div class="position-relative">
+      <div id="containerHour">
+        <div id="contentHour">
+
+          {% for item in hour_data %}
+            <div class="item">
+              <h5>{{ item.time.split()[-1] }}</h5>
+              <img src="{{ item.icon }}" alt="icon">
+              <h4>{{ item.temp_c }}°C</h4>
+              <h6>{{ item.description }}</h6>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    
+      <button class="myButton" id="slide3" type="button"><i class="bi bi-arrow-left-circle myIcon"></i></button>
+      <button class="myButton" id="slide4" type="button"><i class="bi bi-arrow-right-circle myIcon"></i></button>
+    </div>
+
+    <!-- FILL OUT FORM -->
+    <div class="formDiv">
+      <form method="post" class="d-flex flex-column justify-content-center align-items-center">
+        <input class="cityInput" type="text" name="city" placeholder="Enter City Name...">
+        <button class="searchButton" type="submit" >Search</button>
+      </form>
+    </div>
+
+    <!-- SHOW CHOSEN DATE IN DAY FORMAT -->
+    <div class="dateDiv">
+      <h2>{{ chosen_day }}</h2>
+    </div>
+
+    
+
+    <!-- Bootstrap Link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- jQuery GOOGLE CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- External JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

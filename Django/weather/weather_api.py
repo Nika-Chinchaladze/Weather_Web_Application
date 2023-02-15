@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 
 class WeatherApi:
@@ -8,7 +9,7 @@ class WeatherApi:
 
     def get_forecast(self, city):
         my_params = {
-            "key": "42f0134c18044268805135814231202",
+            "key": os.environ.get("MY_KEY"),
             "q": f"{city}",
             "days": "7",
             "aqi": "no",

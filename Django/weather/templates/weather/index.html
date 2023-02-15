@@ -1,0 +1,88 @@
+{% load static %}
+{% load weather_extras %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
+</head>
+  <body style="background-image: url('{% static 'weather/img/weather.jpg' %}')">
+    <!-- CENTRAL TOP SECTION -->
+    <div class="mainDiv">
+        <h3>{{ forecast.city }}, {{ forecast.country }}</h3>
+        <div class="imageDiv d-flex justify-content-center align-items-center">
+            <img src="{{ forecast.icon }}" alt="weather-icon">
+            <b id="mainTemp">{{ forecast.temp_c }}°C</b>
+        </div>
+        <h3>{{ forecast.description }}</h3>
+    </div>
+
+
+    <!-- 7 DAYS FORCAST SECTION -->
+    <h3 class="text-start Heading1">7 Days Forecast</h3>
+    <div class="position-relative">
+      <div class="outerDiv">
+        <div class="innerDiv">
+
+          {% for df in forecast.days %}
+            <div class="myItem">
+              <h5><a href="{% url 'chosen-page' manuscript=df.day_date %}">{{ df.day_date }}</a></h5>
+              <img src="{{ df.day_icon }}" alt="icon">
+              <h4>{{ df.day_temp }}°C</h4>
+              <h6>{{ df.day_text }}</h6>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 DAYS FORCAST SECTION -->
+    <h3 class="text-start Heading2">24 Hours Forecast</h3>
+    <div class="position-relative">
+      <div class="auterDiv">
+        <div class="innerDiv">
+
+          {% for item in hour_cast %}
+            <div class="myItem">
+              <h5>{{ item.time|showHour }}</h5>
+              <img src="{{ item.icon }}" alt="icon">
+              <h4>{{ item.temp_c }}°C</h4>
+              <h6>{{ item.description }}</h6>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    <!-- FILL OUT FORM -->
+    <div class="formDiv">
+      <form method="post" class="d-flex flex-column justify-content-center align-items-center">
+        <!-- <input class="cityInput" type="text" name="city" placeholder="Enter City Name..."> -->
+        {% csrf_token %}
+        {{ form }}
+        <button class="searchButton" type="submit" >Search</button>
+      </form>
+    </div>
+
+    <!-- SHOW CHOSEN DATE IN DAY FORMAT -->
+    <div class="dateDiv">
+      <h2>{{ day_name }}</h2>
+    </div>
+
+    
+
+    <!-- Bootstrap Link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- External JavaScript -->
+    <script src="{% static 'weather/js/app.js' %}"></script>
+  </body>
+</html>
